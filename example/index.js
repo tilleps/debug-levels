@@ -7,6 +7,9 @@
 var levels = require('..').levels;
 var debug = require('..')('debug:example');
 
+
+debug('first');
+
 debug.log('log!');
 debug.error('error!');
 debug.warn('warn!');

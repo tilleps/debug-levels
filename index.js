@@ -45,7 +45,9 @@ var allowedLevels = logLevels.slice(0, key + 1);
  */
 module.exports = function (namespace) {
   
-  var obj = {};
+  var obj = function () {
+    return debug(namespace).apply(null, arguments);
+  };
   for (i in logLevels) {
     
     var logLevel = logLevels[i];    
