@@ -2,12 +2,12 @@ var debug = require('debug');
 
 var logLevel = process.env.DEBUG_LEVEL || 'verbose';
 var logLevels = [
-  'log',
-  'error',
-  'warn',
-  'debug',
-  'info',
-  'verbose'
+    'log',
+    'error',
+    'warn',
+    'debug',
+    'info',
+    'verbose'
 ];
 
 
@@ -15,7 +15,7 @@ var logLevels = [
 //  Empty function
 //
 function emptyFunction() {
-  return function () {};
+    return function () {};
 }
 
 
@@ -25,9 +25,9 @@ function emptyFunction() {
 var key = logLevels.indexOf(logLevel);
 
 if (key == -1) {
-  //  not in allowed levels
-  var msg = 'Log level found in allowed levels';
-  throw new Error(msg);
+    //  not in allowed levels
+    var msg = 'Log level found in allowed levels';
+    throw new Error(msg);
 }
 
 
@@ -44,22 +44,26 @@ var allowedLevels = logLevels.slice(0, key + 1);
  * @return {Object}
  */
 module.exports = function (namespace) {
-  
-  var obj = function () {
-    return debug(namespace).apply(null, arguments);
-  };
-  for (i in logLevels) {
-    
-    var logLevel = logLevels[i];    
-    var allowedLevel = allowedLevels.indexOf(logLevel) > -1;
-    
-    obj[logLevel] = allowedLevel 
-      ? debug(namespace)
-      : emptyFunction;
 
-  }
-  
-  return obj;
+    var obj = function () {
+        return debug(namespace).apply(null, arguments);
+    };
+    for (i in logLevels) {
+        var myDebug = debug(namespace)
+        var logLevel = logLevels[i];
+        var index = allowedLevels.indexOf(logLevel)
+        var allowedLevel = index > -1;
+        myDebug.color = index + 1
+        
+        if (allowedLevel) {
+            obj[logLevel] = myDebug
+        } else {
+            obj[logLevel] = emptyFunction
+        }
+
+    }
+
+    return obj;
 }
 
 
