@@ -26,7 +26,7 @@ var key = logLevels.indexOf(logLevel);
 
 if (key == -1) {
     //  not in allowed levels
-    var msg = 'Log level found in allowed levels';
+    var msg = 'Log level not found in allowed levels';
     throw new Error(msg);
 }
 
