@@ -1,6 +1,6 @@
 {
   "name": "debug-levels",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Debug/verbosity level support for Visionmedia's debug module",
   "main": "index.js",
   "scripts": {
