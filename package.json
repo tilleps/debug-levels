@@ -19,7 +19,7 @@
     "url": "https://github.com/tilleps/debug-levels/issues"
   },
   "homepage": "https://github.com/tilleps/debug-levels",
-  "dependencies": {
-    "debug": "^2.1.0"
+  "peerDependencies": {
+    "debug": ">= 2.1.0"
   }
 }
